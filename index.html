@@ -161,6 +161,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="UIViewController的生命周期"><a href="#UIViewController的生命周期" class="headerlink" title="UIViewController的生命周期"></a>UIViewController的生命周期</h2><p>OC下的方法|Swift下的方法<br>1- (void)loadView {}|override func loadView() {}<br>2- (void)viewDidLoad {}|override func viewDidLoad() {}<br>3 - (void)viewWillAppear:(BOOL)animated {}|override func viewWillAppear(_ animated: Bool)<br>4- (void)viewDidAppear:(BOOL)animated {}|override func viewDidAppear(_ animated: Bool) {}<br>5- (void)viewWillDisappear:(BOOL)animated {}|override func viewWillDisappear(_ animated: Bool) {}<br>6 - (void)viewDidDisappear:(BOOL)animated {}|override func viewDidDisappear(_ animated: Bool) {}</p>
+<p>css&lt;!–more–&gt;</p>
 <p>方法介绍</p>
 <h3 id="1-loadView"><a href="#1-loadView" class="headerlink" title="1.loadView"></a>1.loadView</h3><p>其实loadView严格的不能算是视图的生命周期.<br>1.首先,loadView做了一些加载View的工作.比如UIViewController里面带的UIView的创建.<br>对于loadView大家可以试着重写一下.然后不要在里面调用super.然后在loadView的作用域里面去设置一下self.view的颜色.</p>
 <ul>
@@ -179,17 +180,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">UIKit,Swift</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -392,10 +382,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">UIKit,Swift</a>
               </li>
             
             <div class="clearfix"></div>
