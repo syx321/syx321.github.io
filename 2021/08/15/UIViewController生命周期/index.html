@@ -15,14 +15,14 @@
 <meta property="og:site_name" content="syx321&#39;s blog">
 <meta property="og:description" content="UIViewController的生命周期OC下的方法|Swift下的方法1- (void)loadView {}|override func loadView() {}2- (void)viewDidLoad {}|override func viewDidLoad() {}3 - (void)viewWillAppear:(BOOL)animated {}|override func view">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2021/08/15/UIViewController%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/syx321-blog.oss-cn-beijing.aliyuncs.com/uPic/20160726102854814.jpg">
+<meta property="og:image" content="https://syx321-blog.oss-cn-beijing.aliyuncs.com/uPic/20160726102854814.jpg">
 <meta property="article:published_time" content="2021-08-15T02:03:11.000Z">
-<meta property="article:modified_time" content="2021-08-17T03:16:12.810Z">
+<meta property="article:modified_time" content="2021-08-17T05:04:17.324Z">
 <meta property="article:author" content="syx">
 <meta property="article:tag" content="Swift">
 <meta property="article:tag" content="UIKit">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/08/15/UIViewController%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/syx321-blog.oss-cn-beijing.aliyuncs.com/uPic/20160726102854814.jpg">
+<meta name="twitter:image" content="https://syx321-blog.oss-cn-beijing.aliyuncs.com/uPic/20160726102854814.jpg">
   
     <link rel="alternative" href="/atom.xml" title="syx321&#39;s blog" type="application/atom+xml">
   
@@ -169,7 +169,7 @@
         <h2 id="UIViewController的生命周期"><a href="#UIViewController的生命周期" class="headerlink" title="UIViewController的生命周期"></a>UIViewController的生命周期</h2><p>OC下的方法|Swift下的方法<br>1- (void)loadView {}|override func loadView() {}<br>2- (void)viewDidLoad {}|override func viewDidLoad() {}<br>3 - (void)viewWillAppear:(BOOL)animated {}|override func viewWillAppear(_ animated: Bool)<br>4- (void)viewDidAppear:(BOOL)animated {}|override func viewDidAppear(_ animated: Bool) {}<br>5- (void)viewWillDisappear:(BOOL)animated {}|override func viewWillDisappear(_ animated: Bool) {}<br>6 - (void)viewDidDisappear:(BOOL)animated {}|override func viewDidDisappear(_ animated: Bool) {}</p>
 <span id="more"></span>
 
-<p><img src="syx321-blog.oss-cn-beijing.aliyuncs.com/uPic/20160726102854814.jpg" alt="avatar"></p>
+<p><img src="https://syx321-blog.oss-cn-beijing.aliyuncs.com/uPic/20160726102854814.jpg" alt="avatar"></p>
 <p>方法介绍</p>
 <h3 id="1-loadView"><a href="#1-loadView" class="headerlink" title="1.loadView"></a>1.loadView</h3><p>其实loadView严格的不能算是视图的生命周期.<br>1.首先,loadView做了一些加载View的工作.比如UIViewController里面带的UIView的创建.<br>对于loadView大家可以试着重写一下.然后不要在里面调用super.然后在loadView的作用域里面去设置一下self.view的颜色.</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"><span class="operator">-</span>(void)loadView &#123;</span><br><span class="line"><span class="comment">//    super loadView;</span></span><br><span class="line"><span class="keyword">self</span>.view.backgroundColor <span class="operator">=</span> <span class="type">UIColor</span> redColor;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">```</span><br></pre></td></tr></table></figure>
