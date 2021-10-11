@@ -148,6 +148,169 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-富文本" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/10/11/%E5%AF%8C%E6%96%87%E6%9C%AC/">富文本</a>
+    </h1>
+  
+
+        
+        <a href="/2021/10/11/%E5%AF%8C%E6%96%87%E6%9C%AC/" class="archive-article-date">
+  	<time datetime="2021-10-11T14:13:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="富文本"><a href="#富文本" class="headerlink" title="富文本"></a>富文本</h1><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>创建：    NSAttributedString(string)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NSAttributedString(String, attributes)</span><br><span class="line"></span><br><span class="line">-attributes为样式描述 ，为键值对[NSAttributedString.Key :  Any]</span><br><span class="line">可在创建富文本时使用也可在之后加入 ，使用富文本的方法		  </span><br><span class="line">addAttributes添加样式</span><br></pre></td></tr></table></figure>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="直接在初始化时传入格式"><a href="#直接在初始化时传入格式" class="headerlink" title="直接在初始化时传入格式"></a>直接在初始化时传入格式</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> originalAttributes: [<span class="type">NSAttributedString</span>.<span class="type">Key</span> :  <span class="keyword">Any</span>] <span class="operator">=</span> [</span><br><span class="line">            .font: <span class="type">ESFont</span>.<span class="type">Cart</span>.regular10,　</span><br><span class="line">            .foregroundColor : <span class="type">ESColor</span>.<span class="type">Cart</span>.forwardSlash</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> showText <span class="operator">=</span> <span class="type">NSMutableAttributedString</span>(</span><br><span class="line">string: (product.goodsSize) <span class="operator">+</span> “  <span class="operator">/</span>  “ <span class="operator">+</span> (product.goodsColor))</span><br><span class="line"></span><br><span class="line">showText.addAttributes(originalAttributes, </span><br><span class="line">						 range:<span class="type">NSRange</span>(location: <span class="number">3</span>, length: <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">sizeLabel.attributedText <span class="operator">=</span> showText</span><br></pre></td></tr></table></figure>
+<p>需求是让两个字符串中间的 / 用灰色显示而两边的字符串不更改颜色 ，此时就非常适合用富文本</p>
+<p>Range是为了确定把样式添加到什么位置</p>
+<p>如果一个Label想添加一个富文本显示出来要用attributedText，无法用text设置</p>
+<h4 id="在初始化后设置格式"><a href="#在初始化后设置格式" class="headerlink" title="在初始化后设置格式"></a>在初始化后设置格式</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> originalAttributes: [<span class="type">NSAttributedString</span>.<span class="type">Key</span> : <span class="keyword">Any</span>] <span class="operator">=</span> [</span><br><span class="line">					<span class="type">NSAttributedString</span>.<span class="type">Key</span>.font: 									<span class="type">ESFont</span>.<span class="type">Cart</span>.regular10,</span><br><span class="line">					<span class="type">NSAttributedString</span>.<span class="type">Key</span>.foregroundColor: 						<span class="type">ESColor</span>.<span class="type">Cart</span>.originalPrice,</span><br><span class="line">					<span class="type">NSAttributedString</span>.<span class="type">Key</span>.strikethroughStyle: 					<span class="type">NSUnderlineStyle</span>.single.rawValue,</span><br><span class="line">					<span class="type">NSAttributedString</span>.<span class="type">Key</span>.strikethroughColor: 					<span class="type">ESColor</span>.<span class="type">Cart</span>.originalPrice</span><br><span class="line">                ]</span><br><span class="line"><span class="keyword">let</span> originalString <span class="operator">=</span> <span class="type">NSAttributedString</span>(</span><br><span class="line">		string: currency.currency<span class="operator">!</span> <span class="operator">+</span> currency.sign<span class="operator">!</span> <span class="operator">+</span> </span><br><span class="line">		<span class="type">String</span>(	format: <span class="string">&quot;%.2f&quot;</span>, <span class="type">Float</span>(originalPrice)<span class="operator">/</span><span class="number">100</span>), </span><br><span class="line">		attributes: originalAttributes)</span><br></pre></td></tr></table></figure>
+<p>这段代码里就是在创建NSAttributedString时就把样式设置好</p>
+<h4 id="如果在不确定的位置设置某中样式"><a href="#如果在不确定的位置设置某中样式" class="headerlink" title="如果在不确定的位置设置某中样式"></a>如果在不确定的位置设置某中样式</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> originalAttributes: [<span class="type">NSAttributedString</span>.<span class="type">Key</span> : <span class="keyword">Any</span>] <span class="operator">=</span> [</span><br><span class="line">	.font: <span class="type">ESFont</span>.<span class="type">Cart</span>.regular10,</span><br><span class="line">	.foregroundColor : <span class="type">ESColor</span>.<span class="type">Cart</span>.forwardSlash</span><br><span class="line">]</span><br><span class="line"><span class="keyword">let</span> showText <span class="operator">=</span> <span class="type">NSMutableAttributedString</span>(string:product.goodsSize)</span><br><span class="line"><span class="keyword">let</span> forward <span class="operator">=</span> <span class="type">NSAttributedString</span>(</span><br><span class="line">		string: <span class="string">&quot;  /  &quot;</span>, </span><br><span class="line">		attributes: originalAttributes</span><br><span class="line">)</span><br><span class="line">showText.append(forward)</span><br><span class="line">showText.append(<span class="type">NSAttributedString</span>(string:product.goodsColor))</span><br><span class="line">sizeLabel.attributedText <span class="operator">=</span> showText</span><br></pre></td></tr></table></figure>
+
+<p>在一个NSMutableAttributedString上扩展<br>扩展的内容单独设置</p>
+<h4 id="图文混排"><a href="#图文混排" class="headerlink" title="图文混排"></a>图文混排</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mutableString <span class="operator">=</span> <span class="type">NSMutableAttributedString</span>(string: <span class="string">&quot;Hello&quot;</span>)</span><br><span class="line"><span class="keyword">let</span> image <span class="operator">=</span> 😀</span><br><span class="line"><span class="keyword">let</span> attachment <span class="operator">=</span> <span class="type">NSTextAttachment</span>()</span><br><span class="line">attachment.image <span class="operator">=</span> image</span><br><span class="line">attachment.bounds <span class="operator">=</span> .<span class="keyword">init</span>(x: <span class="number">0</span>, y: <span class="number">0</span>, width: <span class="number">30</span>, height: <span class="number">30</span>)</span><br><span class="line"><span class="keyword">let</span> attachmentString <span class="operator">=</span> <span class="type">NSAttributedString</span>(</span><br><span class="line">attachment: attachment)</span><br><span class="line">mutableString.append(attachmentString)</span><br></pre></td></tr></table></figure>
+
+<h4 id="一段文字中添加链接"><a href="#一段文字中添加链接" class="headerlink" title="一段文字中添加链接"></a>一段文字中添加链接</h4><p>我的做法是设置一个[.link : “ some link”]<br>然后</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">ViewCOntroller</span> : <span class="title">UITextViewDelegate</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">func</span> <span class="title">textView</span>(	<span class="keyword">_</span> <span class="params">textView</span>: <span class="type">UITextView</span>,</span></span><br><span class="line"><span class="function">					<span class="params">shouldInteractWith</span> <span class="params">url</span>: <span class="type">URL</span>,</span></span><br><span class="line"><span class="function">					<span class="params">in</span> <span class="params">characterRange</span>: <span class="type">NSRange</span>,</span></span><br><span class="line"><span class="function">					<span class="params">interaction</span>: <span class="type">UITextItemInteraction</span>)</span> -&gt; <span class="type">Bool</span>&#123;</span><br><span class="line">		<span class="keyword">switch</span> <span class="type">URL</span>.description &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">&quot;some link&quot;</span>:</span><br><span class="line">				<span class="keyword">self</span>.doSomeThing</span><br><span class="line">          <span class="keyword">case</span> <span class="string">&quot;another link&quot;</span>:</span><br><span class="line">              <span class="keyword">self</span>.doAnotherThing</span><br><span class="line">          <span class="keyword">default</span>:</span><br><span class="line">              <span class="keyword">break</span></span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="literal">true</span> <span class="comment">//需要有一个返回值</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>应该有更好的方法但这个是我现在在用的可行的方法</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/98c2655c8037">Swift 如何优雅的构建富文本 - 简书</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/10/11/%E5%AF%8C%E6%96%87%E6%9C%AC/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-类和结构体" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/20/%E7%B1%BB%E5%92%8C%E7%BB%93%E6%9E%84%E4%BD%93/">类和结构体</a>
+    </h1>
+  
+
+        
+        <a href="/2021/08/20/%E7%B1%BB%E5%92%8C%E7%BB%93%E6%9E%84%E4%BD%93/" class="archive-article-date">
+  	<time datetime="2021-08-20T13:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、值类型和引用类型"><a href="#一、值类型和引用类型" class="headerlink" title="一、值类型和引用类型"></a>一、值类型和引用类型</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/20/%E7%B1%BB%E5%92%8C%E7%BB%93%E6%9E%84%E4%BD%93/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-UIViewController生命周期" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
