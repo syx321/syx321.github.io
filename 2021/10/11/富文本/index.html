@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>富文本 | syx321&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="富文本创建创建：    NSAttributedString(string) 12345NSAttributedString(String, attributes)-attributes为样式描述 ，为键值对[NSAttributedString.Key :  Any]可在创建富文本时使用也可在之后加入 ，使用富文本的方法		  addAttributes添加样式 使用直接在初始化时传入格式123">
+  <meta name="description" content="富文本创建创建：    NSAttributedString(string) 123456NSAttributedString(String, attributes)-attributes为样式描述 ，为键值对[NSAttributedString.Key :  Any]可在创建富文本时使用也可在之后加入 ，使用富文本的方法		  addAttributes添加样式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="富文本">
 <meta property="og:url" content="http://example.com/2021/10/11/%E5%AF%8C%E6%96%87%E6%9C%AC/index.html">
 <meta property="og:site_name" content="syx321&#39;s blog">
-<meta property="og:description" content="富文本创建创建：    NSAttributedString(string) 12345NSAttributedString(String, attributes)-attributes为样式描述 ，为键值对[NSAttributedString.Key :  Any]可在创建富文本时使用也可在之后加入 ，使用富文本的方法		  addAttributes添加样式 使用直接在初始化时传入格式123">
+<meta property="og:description" content="富文本创建创建：    NSAttributedString(string) 123456NSAttributedString(String, attributes)-attributes为样式描述 ，为键值对[NSAttributedString.Key :  Any]可在创建富文本时使用也可在之后加入 ，使用富文本的方法		  addAttributes添加样式">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-10-11T14:13:46.000Z">
-<meta property="article:modified_time" content="2021-10-11T14:16:23.684Z">
+<meta property="article:modified_time" content="2021-10-11T14:34:38.285Z">
 <meta property="article:author" content="syx">
 <meta property="article:tag" content="Swift">
 <meta name="twitter:card" content="summary">
@@ -172,7 +172,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="富文本"><a href="#富文本" class="headerlink" title="富文本"></a>富文本</h1><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>创建：    NSAttributedString(string)</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NSAttributedString(String, attributes)</span><br><span class="line"></span><br><span class="line">-attributes为样式描述 ，为键值对[NSAttributedString.Key :  Any]</span><br><span class="line">可在创建富文本时使用也可在之后加入 ，使用富文本的方法		  </span><br><span class="line">addAttributes添加样式</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NSAttributedString(String, attributes)</span><br><span class="line"></span><br><span class="line">-attributes为样式描述 ，为键值对[NSAttributedString.Key :  Any]</span><br><span class="line">可在创建富文本时使用也可在之后加入 ，使用富文本的方法		  </span><br><span class="line">addAttributes添加样式</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="直接在初始化时传入格式"><a href="#直接在初始化时传入格式" class="headerlink" title="直接在初始化时传入格式"></a>直接在初始化时传入格式</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> originalAttributes: [<span class="type">NSAttributedString</span>.<span class="type">Key</span> :  <span class="keyword">Any</span>] <span class="operator">=</span> [</span><br><span class="line">            .font: <span class="type">ESFont</span>.<span class="type">Cart</span>.regular10,　</span><br><span class="line">            .foregroundColor : <span class="type">ESColor</span>.<span class="type">Cart</span>.forwardSlash</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> showText <span class="operator">=</span> <span class="type">NSMutableAttributedString</span>(</span><br><span class="line">string: (product.goodsSize) <span class="operator">+</span> “  <span class="operator">/</span>  “ <span class="operator">+</span> (product.goodsColor))</span><br><span class="line"></span><br><span class="line">showText.addAttributes(originalAttributes, </span><br><span class="line">						 range:<span class="type">NSRange</span>(location: <span class="number">3</span>, length: <span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">sizeLabel.attributedText <span class="operator">=</span> showText</span><br></pre></td></tr></table></figure>
 <p>需求是让两个字符串中间的 / 用灰色显示而两边的字符串不更改颜色 ，此时就非常适合用富文本</p>
 <p>Range是为了确定把样式添加到什么位置</p>
