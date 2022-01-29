@@ -171,25 +171,9 @@
         <blockquote>
 <p>写这篇文章的主要原因是刷到了一道leetcode – 3. 无重复字符的最长子串，之前刷到过很多次，但是看了之前的Swift题解有点不明所以，所以推倒重来。没有思路所以借鉴了之前写的Java的思路，但是写完运行之后发现再倒数第二个用例超时，之后觉得很奇怪，因为这个代码的复杂度在我看来和之前的Java是一个复杂度，为了防止是我计算错误我把Java的代码完全转换成Swift代码再提交，发现还是超时。然后我就开始怀疑这两个语言的String操心可能底层的复杂度是不同的。</p>
 </blockquote>
-<p><img src="/images/String/SwiftLeetCode.png" alt="image"></p>
-<p>Swift</p>
-<p><img src="/images/String/JavaLeetCode.png" alt="image"></p>
-<p>Java</p>
-<p>可以看到这两个代码是做的完全一样的事情，但是Swift会超时。我把String参数先转化成Array再对Array操作，发现没有超时……。那看来就实锤了，String里这个方法肯定比Java里耗时的多</p>
-<p>因此我追踪到index操作看看苹果有没有写index操作的复杂多，果不其然</p>
-<p><img src="/images/String/SwiftSourceCode.png" alt="image"></p>
-<p>这竟然是个O(n)的复杂度</p>
-<p>再打开多年没碰过的IDEA看看Java里这个操作的复杂度</p>
-<p><img src="/images/String/JavaSourceCode1.png" alt="image"></p>
-<p>尴尬了，没写……</p>
-<p>but！Java能直接看代码</p>
-<p><img src="/images/String/JavaSourceCode2.png" alt="image"></p>
-<p>原来在Java的底层String是把String 中的字符都存在一个Char数组里，那根据index找到某个字符就当然是O(1)的复杂度了</p>
-<p>但是随之而来又有一个问题，那Swift底层是怎么实现的String才会导致找到某个字符的复杂度会是O(n) （准确的说是index方法）</p>
-<p>开始网上查资料……</p>
-<p>这一查才发现是个大坑啊，原来String类型遵循Collection协议，这里还比较好理解，毕竟一个String就是Character的集合，但是迷惑的来了。String所存储的集合是UTF-8字符，但UTF-8是可变长度编码——也就是解答了为什么不能像java一样用一个Int类型取一个index (一个字符会用一到四个UTF-8单元组成)</p>
-<p>知道了这点基本就能回答开始的问题了，为什么查找index的操作会是个O(n)的操作，当想要获取index时必须从头开始遍历，根据每个字符的UTF-8找到这个字符对应的index，而不是直接Int值就能找到。</p>
-
+        
+          <a class="article-more-a" href="/2022/01/29/String/#more">more >></a>
+        
       
 
       
